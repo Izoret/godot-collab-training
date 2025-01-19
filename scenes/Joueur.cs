@@ -58,5 +58,18 @@ public partial class Joueur : Area2D
         Mathf.Clamp(Position.X, 0, screensize.X),
         Mathf.Clamp(Position.Y, 0, screensize.Y)
     	);
+
+		if (velocity.X != 0){
+			animatedSprite.Animation = "droite";
+			animatedSprite.FlipH = velocity.X < 0;
+			animatedSprite.FlipV = false;
+		}
+		else {
+			animatedSprite.Animation = "haut";
+			animatedSprite.FlipV = velocity.Y > 0;
+		}
+		
 	}
+
+	
 }
