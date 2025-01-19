@@ -53,5 +53,10 @@ public partial class Joueur : Area2D
         }
 
         Position = Position + velocity * (float)delta;
+
+		Position = new Vector2(
+        Mathf.Clamp(Position.X, 0, screensize.X),
+        Mathf.Clamp(Position.Y, 0, screensize.Y)
+    	);
 	}
 }
