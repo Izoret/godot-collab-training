@@ -3,15 +3,55 @@ using System;
 
 public partial class Joueur : Area2D
 {
-	// Called when the node enters the scene tree for the first time.
+	[Export]
+    private int SPEED = 400;
+    private AnimatedSprite2D animatedSprite;
+    private CollisionShape2D collisionShape2D;
+    private Vector2 velocity;
+    private Vector2 screensize;
+
 	public override void _Ready()
 	{
-		GD.Print("joueur est prêt");
+		screensize = GetViewportRect().Size;
+        animatedSprite = (AnimatedSprite2D)GetNode("AnimatedSprite2D");
+        collisionShape2D = (CollisionShape2D)GetNode("CollisionShape2D");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		GD.Print("nouvelle frame");
+		velocity = new Vector2();
+
+        if (Input.IsActionPressed("ui_right"))
+        {
+            velocity.X += 1;
+        }
+
+        if (Input.IsActionPressed("ui_left"))
+        {
+            velocity.X -= 1;
+        }
+
+        if (Input.IsActionPressed("ui_down"))
+        {
+            velocity.Y += 1;
+        }
+
+        if (Input.IsActionPressed("ui_up"))
+        {
+            velocity.Y -= 1;
+        }
+
+        if (velocity.Length() > 0)
+        {
+            velocity = velocity.Normalized() * SPEED;
+            animatedSprite.Play();
+        }
+        else
+        {
+            animatedSprite.Stop();
+        }
+
+        Position = Position + velocity * (float)delta;
 	}
 }
