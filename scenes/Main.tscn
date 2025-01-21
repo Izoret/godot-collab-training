@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbd2iiuj0en6e"]
+
+[ext_resource type="PackedScene" uid="uid://cp5q15l04seet" path="res://scenes/level1.tscn" id="1_awhit"]
+[ext_resource type="PackedScene" uid="uid://drkkb18im3s7n" path="res://scenes/Joueur.tscn" id="2_ft1f6"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Level1" parent="." instance=ExtResource("1_awhit")]
+position = Vector2(167, 203)
+
+[node name="Joueur" parent="." instance=ExtResource("2_ft1f6")]
+position = Vector2(229, 171)
+scale = Vector2(0.495, 0.495)
+SPEED = 300
